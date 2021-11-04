@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Front page</title>
+</head>
+<body>
+    <h2>Users</h2>
+    <form action="/createUser" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="submit" value="Save">
+    </form>
+
+    <br><br>
+
+    <a onclick="listUsers()">
+        <button>List of users</button>
+    </a>
+    <a href="/notebook" style="position: absolute; top: 20px; right: 20px">
+        <button>Notebook features</button>
+    </a>
+    <div id="tableOfUsers" style="display: none">
+        <table>
+            <thead>
+                <tr>
+                    <th>Usernames</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${users}">
+                    <td th:text="${user.username}"></td>
+                    <td>
+                        <a th:href="@{'/deleteUser/'+${user.id}}">
+                            <button style="background-color: lightcoral">Delete</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/updateUser/'+${user.id}}">
+                            <button style="background-color: aquamarine">Edit</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    function listUsers() {
+        var userlist = document.getElementById("tableOfUsers");
+        if (userlist.style.display === "none") {
+            userlist.style.display = "block";
+        } else {
+            userlist.style.display = "none";
+        }
+    }
+</script>
+</html>

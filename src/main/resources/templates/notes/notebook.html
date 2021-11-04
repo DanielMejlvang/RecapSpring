@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Notebook</title>
+</head>
+<body>
+    <h2>Your notebook</h2>
+    <a href="/createNote">
+        <button style="background-color: lightgreen">Create note</button>
+    </a>
+    <a href="/" style="position: absolute; top: 20px; right: 20px">
+        <button>User features</button>
+    </a>
+
+    <br><br>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Your notes</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="note: ${notes}">
+                <td th:text="${note.title}"></td>
+                <td>
+                    <a th:href="@{'/viewNote/'+${note.id}}">
+                        <button style="background-color: lightskyblue">View</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/deleteNote/'+${note.id}}">
+                        <button style="background-color: lightcoral" onclick="return(confirm('Delete this note?'))">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

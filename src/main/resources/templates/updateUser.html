@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+</head>
+<body>
+<h2>Change username</h2>
+<form action="/updateUser" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <input type="text" name="username" th:value="${user.username}">
+    <input type="submit" value="Save change">
+</form>
+</body>
+</html>
